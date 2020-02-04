@@ -1,0 +1,9 @@
+{
+    "smtpHost": "smtp.gmail.com",
+  "port": 465,
+  "username": "abc@gmail.com",
+  "password": "password",
+  "from": "abc@gmail.com",
+  "to": "xyz@gmail.com",
+  "subject": "SMS not sent"
+}
