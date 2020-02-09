@@ -5,17 +5,26 @@ module.exports=function(){
     function DragAndDropWithAxis(sourceEle,axis){
 
         return browser.sleep(3000).then(function(){
-            browser.driver.actions()
+            return sourceEle.isDisplayed().then(function(ele){
+              if(ele){
+               return browser.driver.actions()
    
-            .dragAndDrop(sourceEle, { x: axis.x, y: axis.y })
-        
-            .mouseMove(sourceEle, { x: axis.x, y: axis.y }) // 900px from left, 100 px from top of plot0
-        
-            .mouseDown()
-        
-            .mouseMove({ x: 600, y: 0 }) // 600px to the right of current location
-        
-            .perform();
+                .dragAndDrop(sourceEle, { x: axis.x, y: axis.y })
+            
+                .mouseMove(sourceEle, { x: axis.x, y: axis.y }) // 900px from left, 100 px from top of plot0
+            
+                .mouseDown()
+            
+                .mouseMove({ x: 600, y: 0 }) // 600px to the right of current location
+            
+                .perform();
+              }
+              else{
+               browser.logger.info("Source element not visible for drag and drop");
+               throw new Error("Element Not Visible");
+              }
+            })
+         
         }) 
    
 }

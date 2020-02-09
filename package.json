@@ -25,6 +25,8 @@
     "karma-jasmine": "~1.1.0",
     "karma-jasmine-html-reporter": "^0.2.2",
     "protractor": "^5.4.0",
-    "protractor-jasmine2-screenshot-reporter": "^0.5.0"
+    "protractor-jasmine2-screenshot-reporter": "^0.5.0",
+    "log4js": "^6.1.1",
+    "log4js-protractor-appender": "^1.1.2"
   }
 }

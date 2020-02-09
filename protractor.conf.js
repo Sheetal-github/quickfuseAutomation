@@ -2,6 +2,7 @@
 // https://github.com/angular/protractor/blob/master/lib/config.ts
 var HtmlScreenshotReporter = require('protractor-jasmine2-screenshot-reporter');
 var outputDir = 'e2e/test-results/';
+var log4js = require('log4js');
 
 var reporter = new HtmlScreenshotReporter({
   dest: outputDir,
@@ -36,6 +37,10 @@ exports.config = {
   beforeLaunch: function () {
     return new Promise(function (resolve) {
       reporter.beforeLaunch(resolve);
+      log4js.configure({
+        appenders:{protractorLog4js:{type:'console'},protractorLog4jsFile:{type:'file',filename:'./logs/ExecutiongLog.log'}},
+        categories: { default: { appenders: ['protractorLog4js'], level: 'info' } }
+    });
     });
   },
   onPrepare() {
@@ -44,7 +49,8 @@ exports.config = {
     // });
     //jasmine.getEnv().addReporter(new SpecReporter({ spec: { displayStacktrace: true } }));
     return browser.getProcessedConfig().then(function(config){
-      browser.hostname= config.capabilities.host
+      browser.hostname= config.capabilities.host;
+      browser.logger = log4js.getLogger('protractorLog4js');
     }),
   
     jasmine.getEnv().addReporter(reporter);

@@ -66,14 +66,14 @@ function homePage() {
     this.gotoCreateAppPage = function () {
         return browser.wait(EC.visibilityOf(createAppLink, 30000)).then(function () {
             createAppLink.click();
-            startedButtonText.click();
+                browser.logger.info("After clicking on \"Create an App\"");
+                browser.wait(EC.presenceOf(startedButtonText), 10000, 'Let\'s get Started Element taking too long to appear in the DOM');
+                 return startedButtonText.click();
+       
+           
         });
 
     }
-
-    // this.clickModule=function(moduleName){
-    //     return element(By.linkText("'"+moduleName+"'")).click();
-    // }
 }
 
 module.exports = homePage;
